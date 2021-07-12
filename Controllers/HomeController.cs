@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
-
+using BigSchool.ViewModels;
 
 namespace BigSchool.Controllers
 {
@@ -18,8 +18,21 @@ namespace BigSchool.Controllers
         }
         public ActionResult Index()
         {
-            var upcomingCourses = _dbContext.Courses.Include(c => c.Lecturer).Include(c => c.Category).Where(c => c.DateTime > DateTime.Now);
-            return View(upcomingCourses);
+            //var upcomingCourses = _dbContext.Courses.Include(c => c.Lecturer).Include(c => c.Category).Where(c => c.DateTime > DateTime.Now);
+            //return View(upcomingCourses);
+
+            var upcommingCourse = _dbContext.Courses
+                .Include(a => a.Lecturer)
+                .Include(a => a.Category)
+                .Where(a => a.DateTime > DateTime.Now);
+
+            var viewModel = new CoursesViewModel
+            {
+                UpcommingCourses = upcommingCourse,
+                ShowAction = User.Identity.IsAuthenticated
+            };
+            return View(viewModel);
+
         }
         //public ActionResult Index()
         //{

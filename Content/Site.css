@@ -31,13 +31,23 @@
             top: 0;
             left: 70px;
         }
+
+.course > li .action {
+            display: none;
+            left: 70px;
+            position: absolute;
+        }
+.course > li:hover .action {
+            display: block;
+ }
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .navbar-inverse {
-    background-color: #9d1d1d;
-    border-color: #080808;
+    background-color: #d41d50;
+    border-color: #0094ff;
 }
+
 .dl-horizontal dt {
     white-space: normal;
 }
